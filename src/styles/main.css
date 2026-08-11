@@ -1,0 +1,100 @@
+@import url('./reset.css');
+
+/* Google Fonts - Josefin Sans (400, 700) */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+/* --- CSS DEĞİŞKENLERİ (VARIABLES) --- */
+:root {
+  /* Font Tanımlamaları */
+  --ff-sans: 'Josefin Sans', sans-serif;
+  --fw-normal: 400;
+  --fw-bold: 700;
+  /* --- 1. SPACING SYSTEM (Boşluklar) --- */
+  --space-0: 0px;
+  --space-100: 0.5rem; /* 8px */
+  --space-200: 1rem; /* 16px */
+  --space-300: 1.5rem; /* 24px */
+  --space-500: 2.5rem; /* 40px */
+  --space-600: 3rem; /* 48px */
+
+  /* --- 2. TYPOGRAPHY SYSTEM (Yazı Boyutları) --- */
+  /* Text Preset 1 (Büyük Başlık / Logo için olabilir) */
+  --fs-preset-1: 2.5rem; /* 40px */
+  --lh-preset-1: 100%;
+  --ls-preset-1: -0.25px;
+
+  /* Text Preset 2 (Normal / Bold ) */
+  --fs-preset-2: 1.125rem; /* 18px */
+  --lh-preset-2: 100%;
+  --ls-preset-2: -0.25px;
+
+  /* Text Preset 3 (Küçük Yazılar - Alt bar, filtreler, "5 items left" kısmı) */
+  --fs-preset-3: 0.875rem; /* 14px */
+  --lh-preset-3: 100%;
+  --ls-preset-3: -0.2rem;
+
+  /* Sabit/Ortak Renkler */
+  --clr-blue-500: hsl(220, 98%, 61%);
+  --grad-check: linear-gradient(
+    135deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  /* TEMA DEĞİŞKENLERİ (Varsayılan: Light Theme) */
+  --clr-bg: hsl(0, 0%, 98%); /* Gray 50 */
+  --clr-card-bg: hsl(0, 0%, 100%); /* Kartlar için saf beyaz */
+  --clr-text-main: hsl(235, 19%, 35%); /* Navy 850 */
+  --clr-text-muted: hsl(236, 9%, 61%); /* Gray 600 */
+  --clr-border: hsl(233, 11%, 84%); /* Gray 300 */
+  --clr-placeholder: hsl(234, 39%, 85%); /* Purple 300 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-bg: hsl(235, 21%, 11%); /* Navy 950 */
+    --clr-card-bg: hsl(235, 24%, 19%); /* Navy 900 */
+    --clr-text-main: hsl(234, 39%, 85%); /* Purple 300 */
+    --clr-text-muted: hsl(235, 16%, 43%); /* Purple 600 */
+    --clr-border: hsl(237, 14%, 26%); /* Purple 800 */
+    --clr-placeholder: hsl(236, 33%, 92%); /* Purple 100 */
+    --clr-line-through: hsl(233, 14%, 35%);
+  }
+}
+
+[data-theme='dark'] {
+  --clr-bg: hsl(235, 21%, 11%); /* Navy 950 */
+  --clr-card-bg: hsl(235, 24%, 19%); /* Navy 900 */
+  --clr-text-main: hsl(234, 39%, 85%); /* Purple 300 */
+  --clr-text-muted: hsl(235, 16%, 43%); /* Purple 600 */
+  --clr-text-hover: hsl(236, 33%, 92%); /* Purple 100 */
+  --clr-border: hsl(237, 14%, 26%); /* Purple 800 */
+  --clr-line-through: hsl(
+    233,
+    14%,
+    35%
+  ); /* Purple 700 (Tamamlanan görevler için) */
+}
+[data-theme='light'] {
+  --clr-bg: hsl(0, 0%, 98%); /* Gray 50 */
+  --clr-card-bg: hsl(0, 0%, 100%); /* Kartlar için saf beyaz */
+  --clr-text-main: hsl(235, 19%, 35%); /* Navy 850 */
+  --clr-text-muted: hsl(236, 9%, 61%); /* Gray 600 */
+  --clr-border: hsl(233, 11%, 84%); /* Gray 300 */
+  --clr-placeholder: hsl(234, 39%, 85%); /* Purple 300 */
+}
+
+/* --- GENEL STİLLER --- */
+body {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-preset-2);
+  font-weight: var(--fw-normal);
+  /* Tema geçişlerinde yumuşak bir efekt için: */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+/*  media queries breakpoints
+- Mobile: 375px
+- Desktop: 1440px
+*/

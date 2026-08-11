@@ -1,0 +1,57 @@
+@scope (.Todo) {
+  :scope {
+    background-color: var(--clr-card-bg);
+    color: var(--clr-text-main);
+
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom: 1px solid var(--clr-border);
+    padding: 16px 20px;
+
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .circle_shape {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--clr-text-muted);
+    background-image: var(--grad-check);
+
+    position: absolute;
+    top: 14px;
+    left: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon_check {
+      font-size: 34px;
+      display: block;
+      background-color: black;
+      border-radius: 50%;
+      width: 60%;
+      background-color: transparent;
+    }
+  }
+  i {
+    margin-left: auto;
+    color: var(--clr-text-muted);
+    width: 12px;
+    cursor: pointer;
+  }
+  .text {
+    padding-left: 56px;
+    color: var(--clr-text-main);
+    font-size: var(--fs-preset-3);
+  }
+  .icon_cross {
+    transition: color 0.3s ease-in-out;
+    &:hover {
+      color: rgb(238, 66, 66);
+    }
+  }
+}

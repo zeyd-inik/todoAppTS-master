@@ -1,0 +1,33 @@
+@scope (.TodoInput) {
+  :scope {
+    position: relative;
+    margin-bottom: var(--space-200);
+    border-bottom: 1px solid var(--clr-border);
+  }
+  .circle_shape {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--clr-text-muted);
+
+    position: absolute;
+    top: 14px;
+    left: 24px;
+  }
+  input[type='text'] {
+    display: block;
+    width: 100%;
+    background-color: var(--clr-card-bg);
+    color: var(--clr-text-main);
+
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 14px 60px;
+
+    &::placeholder {
+      color: var(--clr-placeholder);
+      font-size: var(--fs-preset-3);
+    }
+  }
+}

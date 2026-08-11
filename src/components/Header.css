@@ -1,0 +1,28 @@
+@scope (.Header) {
+  :scope {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-500);
+  }
+  .logo {
+    text-transform: uppercase;
+    color: white;
+    user-select: none;
+
+    font-size: clamp(
+      1.25rem,
+      1.0319767441860466rem + 0.9302325581395349vw,
+      1.875rem
+    );
+  }
+  .moon_icon {
+    fill: white;
+    color: white;
+    cursor: pointer;
+  }
+  .sun_icon {
+    fill: yellow;
+    color: yellow;
+    cursor: pointer;
+  }
+}

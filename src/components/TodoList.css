@@ -1,0 +1,36 @@
+@scope (.TodoList) {
+  :scope {
+    margin-bottom: var(--space-200);
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+      rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  }
+  .todo_remains {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: var(--clr-card-bg);
+    padding: 16px 20px;
+    font-size: var(--fs-preset-3);
+    color: var(--clr-text-muted);
+    .clear_completed {
+      color: var(--clr-text-muted);
+    }
+  }
+  .progress {
+    display: none;
+    .active {
+      color: var(--clr-blue-500);
+    }
+    .state {
+      cursor: pointer;
+    }
+    .state:nth-child(2) {
+      padding-left: var(--space-200);
+      padding-right: var(--space-200);
+    }
+    @media screen and (min-width: 768px) {
+      display: block;
+    }
+  }
+}
