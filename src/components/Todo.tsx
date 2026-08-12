@@ -1,8 +1,12 @@
 import iconCheck from '../images/icon-check.svg';
 import IconX from '../images/icon-cross.svg?react';
+import type { TodoType } from '../types';
 import './Todo.css';
-
-export default function Todo() {
+type TodoProps = {
+  todo: TodoType;
+  deleteTodo: (id: string) => void;
+};
+export default function Todo({ todo, deleteTodo }: TodoProps) {
   return (
     <li className="Todo">
       <span className="circle_shape">
@@ -12,9 +16,13 @@ export default function Todo() {
           alt=""
         />
       </span>
-      {/* change------------------------------------------ */}
-      <span className="text">todo text</span>
-      <i>
+
+      <span className="text">{todo.text}</span>
+      <i
+        onClick={() => {
+          deleteTodo(todo.id);
+        }}
+      >
         <IconX className="icon_cross " />
       </i>
     </li>

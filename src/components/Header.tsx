@@ -18,11 +18,13 @@ export default function Header({ changeTheme, theme }: HeaderProps) {
         <CiLight
           onClick={() => changeTheme()}
           className="sun_icon"
+          size={25}
         />
       ) : (
         <HiOutlineMoon
           onClick={() => changeTheme()}
           className="moon_icon"
+          size={25}
         />
       )}
     </header>

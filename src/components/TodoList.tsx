@@ -1,13 +1,24 @@
+import type { TodoType } from '../types';
 import Todo from './Todo';
 import './TodoList.css';
+type TodoListProps = {
+  todos: TodoType[];
+  deleteTodo: (id: string) => void;
+};
 
-export default function TodoList() {
+export default function TodoList({ todos, deleteTodo }: TodoListProps) {
   return (
     <div className="TodoList">
       <ul>
-        <Todo />
-        <Todo />
-        <Todo />
+        {todos.map((todo) => {
+          return (
+            <Todo
+              key={todo.id}
+              todo={todo}
+              deleteTodo={deleteTodo}
+            />
+          );
+        })}
       </ul>
 
       <div className="todo_remains">
