@@ -58,6 +58,16 @@ function App() {
     });
     setTodos(newTodos);
   };
+  const toggleDone = (id: string): void => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        const updatedTodo = { ...todo, completed: !todo.completed };
+        return updatedTodo;
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
 
   return (
     <div className="App">
@@ -70,6 +80,7 @@ function App() {
         <TodoList
           todos={todos}
           deleteTodo={deleteTodo}
+          toggleDone={toggleDone}
         />
       </main>
     </div>

@@ -4,9 +4,14 @@ import './TodoList.css';
 type TodoListProps = {
   todos: TodoType[];
   deleteTodo: (id: string) => void;
+  toggleDone: (id: string) => void;
 };
 
-export default function TodoList({ todos, deleteTodo }: TodoListProps) {
+export default function TodoList({
+  todos,
+  deleteTodo,
+  toggleDone,
+}: TodoListProps) {
   return (
     <div className="TodoList">
       <ul>
@@ -16,6 +21,7 @@ export default function TodoList({ todos, deleteTodo }: TodoListProps) {
               key={todo.id}
               todo={todo}
               deleteTodo={deleteTodo}
+              toggleDone={toggleDone}
             />
           );
         })}

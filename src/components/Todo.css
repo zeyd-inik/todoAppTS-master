@@ -19,7 +19,6 @@
     height: 20px;
     border-radius: 50%;
     border: 1px solid var(--clr-text-muted);
-    background-image: var(--grad-check);
 
     position: absolute;
     top: 14px;
@@ -28,14 +27,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .icon_check {
-      font-size: 34px;
-      display: block;
-      background-color: black;
-      border-radius: 50%;
-      width: 60%;
-      background-color: transparent;
+    &.ok {
+      background-image: var(--grad-check);
     }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .icon_check {
+    font-size: 34px;
+    display: block;
+    background-color: black;
+    border-radius: 50%;
+    width: 60%;
+    background-color: transparent;
   }
   i {
     margin-left: auto;
@@ -47,7 +52,13 @@
     padding-left: 56px;
     color: var(--clr-text-main);
     font-size: var(--fs-preset-3);
+    user-select: none;
+    &.done {
+      color: var(--clr-line-through);
+      text-decoration: line-through;
+    }
   }
+
   .icon_cross {
     transition: color 0.3s ease-in-out;
     &:hover {
