@@ -1,4 +1,5 @@
-import type { TodoType } from '../types';
+import { useState } from 'react';
+import type { TodoType, Filter } from '../types';
 import Todo from './Todo';
 import './TodoList.css';
 type TodoListProps = {
@@ -12,10 +13,26 @@ export default function TodoList({
   deleteTodo,
   toggleDone,
 }: TodoListProps) {
+  const [filter, setFilter] = useState<Filter>('all');
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'active') return !todo.completed;
+    if (filter === 'completed') return todo.completed;
+    return true;
+  });
+
+  const activeTodos = todos.filter((todo) => {
+    return !todo.completed;
+  });
+
+  const isSomeCompleted = todos.some((todo) => {
+    return todo.completed === true;
+  });
+
   return (
     <div className="TodoList">
       <ul>
-        {todos.map((todo) => {
+        {filteredTodos.map((todo) => {
           return (
             <Todo
               key={todo.id}
@@ -28,13 +45,38 @@ export default function TodoList({
       </ul>
 
       <div className="todo_remains">
-        <span className="info">5 items left</span>
+        <span className="info">{activeTodos.length} items left</span>
         <div className="progress">
-          <span className="state">All</span>
-          <span className="state">Active</span>
-          <span className="state ">Completed</span>
+          <span
+            className={`state ${filter === 'all' ? 'active' : ''}`}
+            onClick={() => {
+              setFilter('all');
+            }}
+          >
+            All
+          </span>
+          <span
+            className={`state ${filter === 'active' ? 'active' : ''}`}
+            onClick={() => {
+              setFilter('active');
+            }}
+          >
+            Active
+          </span>
+          <span
+            className={`state ${filter === 'completed' ? 'active' : ''}`}
+            onClick={() => {
+              setFilter('completed');
+            }}
+          >
+            Completed
+          </span>
         </div>
-        <button className="clear_completed">clear completed</button>
+        <button
+          className={`clear_completed ${isSomeCompleted ? '' : 'disappear'}`}
+        >
+          clear completed
+        </button>
       </div>
     </div>
   );

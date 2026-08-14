@@ -15,15 +15,19 @@
     color: var(--clr-text-muted);
     .clear_completed {
       color: var(--clr-text-muted);
+      &.disappear {
+        visibility: hidden;
+      }
     }
   }
   .progress {
     display: none;
-    .active {
-      color: var(--clr-blue-500);
-    }
+
     .state {
       cursor: pointer;
+      &.active {
+        color: var(--clr-blue-500);
+      }
     }
     .state:nth-child(2) {
       padding-left: var(--space-200);
