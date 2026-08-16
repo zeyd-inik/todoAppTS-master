@@ -4,19 +4,21 @@ import IconX from '../images/icon-cross.svg?react';
 import './Todo.css';
 
 import type { TodoType } from '../types';
+import { useAppDispatch } from '../store/hooks';
+import { deleteTodo, toggleDone } from '../store/todoStore';
+
 type TodoProps = {
   todo: TodoType;
-  deleteTodo: (id: string) => void;
-  toggleDone: (id: string) => void;
 };
 
-export default function Todo({ todo, deleteTodo, toggleDone }: TodoProps) {
+export default function Todo({ todo }: TodoProps) {
+  const dispatch = useAppDispatch();
   return (
     <li className="Todo">
       <span
         className={`circle_shape ${todo.completed ? 'ok' : ''}`}
         onClick={() => {
-          toggleDone(todo.id);
+          dispatch(toggleDone(todo.id));
         }}
       >
         {todo.completed && (
@@ -33,7 +35,7 @@ export default function Todo({ todo, deleteTodo, toggleDone }: TodoProps) {
       </span>
       <i
         onClick={() => {
-          deleteTodo(todo.id);
+          dispatch(deleteTodo(todo.id));
         }}
       >
         <IconX className="icon_cross " />

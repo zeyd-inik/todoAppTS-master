@@ -1,31 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './App.css';
-import { type Theme, type TodoType } from './types';
 
 import Header from './components/Header';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
+import { useAppSelector } from './store/hooks';
 
 function App() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('theme') as Theme | null;
-    if (saved) {
-      return saved;
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
+  const theme = useAppSelector((store) => {
+    return store.theme;
   });
-
-  const [todos, setTodos] = useState<TodoType[]>(() => {
-    const saved = localStorage.getItem('todos');
-    if (saved) {
-      return JSON.parse(saved);
-    }
-    localStorage.setItem('todos', JSON.stringify([]));
-    return [];
+  const todos = useAppSelector((store) => {
+    return store.todo.todos;
   });
-
   useEffect(() => {
     document.querySelector('html')?.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
@@ -35,53 +22,12 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  const changeTheme = () => {
-    setTheme((prevTheme) => {
-      return prevTheme === 'dark' ? 'light' : 'dark';
-    });
-  };
-
-  const addTodo = (text: string): void => {
-    const newTodo: TodoType = {
-      text,
-      id: crypto.randomUUID(),
-      completed: false,
-    };
-    setTodos((prev) => {
-      return [...prev, newTodo];
-    });
-  };
-
-  const deleteTodo = (id: string) => {
-    const newTodos: TodoType[] = todos.filter((todo) => {
-      return todo.id !== id;
-    });
-    setTodos(newTodos);
-  };
-  const toggleDone = (id: string): void => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        const updatedTodo = { ...todo, completed: !todo.completed };
-        return updatedTodo;
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
-  };
-
   return (
     <div className="App">
       <main>
-        <Header
-          changeTheme={changeTheme}
-          theme={theme}
-        />
-        <TodoInput addTodo={addTodo} />
-        <TodoList
-          todos={todos}
-          deleteTodo={deleteTodo}
-          toggleDone={toggleDone}
-        />
+        <Header />
+        <TodoInput />
+        <TodoList />
       </main>
     </div>
   );

@@ -1,18 +1,16 @@
 import { useState } from 'react';
-import type { TodoType, Filter } from '../types';
+import type { Filter } from '../types';
 import Todo from './Todo';
 import './TodoList.css';
-type TodoListProps = {
-  todos: TodoType[];
-  deleteTodo: (id: string) => void;
-  toggleDone: (id: string) => void;
-};
+import { useAppSelector } from '../store/hooks';
+import { useDispatch } from 'react-redux';
+import { clearCompleted } from '../store/todoStore';
 
-export default function TodoList({
-  todos,
-  deleteTodo,
-  toggleDone,
-}: TodoListProps) {
+export default function TodoList() {
+  const todos = useAppSelector((store) => {
+    return store.todo.todos;
+  });
+  const dispatch = useDispatch();
   const [filter, setFilter] = useState<Filter>('all');
 
   const filteredTodos = todos.filter((todo) => {
@@ -37,8 +35,6 @@ export default function TodoList({
             <Todo
               key={todo.id}
               todo={todo}
-              deleteTodo={deleteTodo}
-              toggleDone={toggleDone}
             />
           );
         })}
@@ -74,6 +70,9 @@ export default function TodoList({
         </div>
         <button
           className={`clear_completed ${isSomeCompleted ? '' : 'disappear'}`}
+          onClick={() => {
+            dispatch(clearCompleted());
+          }}
         >
           clear completed
         </button>

@@ -1,16 +1,17 @@
 import { useState, type KeyboardEvent } from 'react';
 import './TodoInput.css';
-import type { TodoType } from '../types';
-type TodoInputProps = { addTodo: (text: string) => void };
+import { useAppDispatch } from '../store/hooks';
+import { addTodo } from '../store/todoStore';
 
-export default function TodoInput({ addTodo }: TodoInputProps) {
+export default function TodoInput() {
+  const dispatch = useAppDispatch();
+
   const [text, setText] = useState<string>('');
-  const [todo, setTodo] = useState<TodoType | object>({});
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (!text.trim()) return;
-      addTodo(text);
+      dispatch(addTodo(text));
       setText('');
     }
   };
